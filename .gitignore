@@ -1,0 +1,12 @@
+# vscode
+.vscode
+
+# exec
+philo
+
+# libft
+libft/srcs/*/*.o
+libft/libft.a
+
+# objs
+objs/
