@@ -19,6 +19,7 @@ OBJDIR      = objs
 # Fontes
 SRCS 		= main.c		\
 			  validate.c	\
+			  setup.c		\
 			  utils.c
 
 # Adiciona prefixo do diretório

@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:19:47 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 18:50:08 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/02 20:33:38 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int	main(int num, char **args)
 {
+	t_philo	*philos;
+
 	if (!validate(num, args))
 		return (1);
-	ft_printf("All arguments are valid!\n");
+	philos = setup(num, args);
+	if (!philos)
+		return (1);
+	free(philos[0].data);
+	free(philos);
+	ft_printf("finish\n");
 	return (0);
 }

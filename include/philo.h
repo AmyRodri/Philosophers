@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 19:04:31 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/02 20:34:33 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,27 @@ typedef enum s_bool
 	true = 1
 }	t_bool;
 
+typedef struct s_data
+{
+	int	num_philos;
+	int	time_to_die;
+	int	time_to_eat;
+	int	time_to_sleep;
+	int	num_meals;
+}	t_data;
+
+typedef struct s_philo
+{
+	int		id;
+	t_data	*data;
+}	t_philo;
+
 // validate.c
 t_bool	validate(int num, char **args);
 t_bool	is_number(char *str);
+
+// setup.c
+t_philo	*setup(int num, char **args);
 
 // utls.c
 void	*write_error(char *msg, void *ret);
