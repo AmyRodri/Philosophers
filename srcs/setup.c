@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:15 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 11:31:40 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/03 15:00:16 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,23 @@ static t_data	*init_data(int num, char **args)
 	data->time_to_eat = (int)ft_atol(args[3]);
 	data->time_to_sleep = (int)ft_atol(args[4]);
 	data->num_meals = 0;
+	data->finished = 0;
+	data->start_time = get_time();
 	if (num == 6)
 		data->num_meals = (int)ft_atol(args[5]);
 	return (data);
+}
+
+static void	init_mutexes(t_data *data)
+{
+	int	i;
+
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->num_philos);
+	i = 0;
+	while (i < data->num_philos)
+		pthread_mutex_init(&data->forks[i++], NULL);
+	pthread_mutex_init(&data->write_lock, NULL);
+	pthread_mutex_init(&data->finish_lock, NULL);
 }
 
 static t_philo	*init_philo(t_data *data)
@@ -48,6 +62,10 @@ static t_philo	*init_philo(t_data *data)
 	{
 		philos[i].id = i + 1;
 		philos[i].data = data;
+		philos[i].left_fork = i;
+		philos[i].right_fork = (i + 1) % data->num_philos;
+		philos[i].meals_eaten = 0;
+		philos[i].last_meal = get_time();
 		i++;
 	}
 	return (philos);
@@ -61,6 +79,7 @@ t_philo	*setup(int num, char **args)
 	data = init_data(num, args);
 	if (!data)
 		return (NULL);
+	init_mutexes(data);
 	philos = init_philo(data);
 	if (!philos)
 	{

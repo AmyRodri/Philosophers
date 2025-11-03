@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 11:30:51 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/03 14:44:54 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,22 @@ typedef struct s_data
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				num_meals;
+	int				finished;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	finish_lock;
 	long			start_time;
 }	t_data;
 
 typedef struct s_philo
 {
-	int		id;
-	t_data	*data;
+	int			id;
+	pthread_t	thread;
+	int			left_fork;
+	int			right_fork;
+	int			meals_eaten;
+	int			last_meal;
+	t_data		*data;
 }	t_philo;
 
 // validate.c
@@ -55,6 +62,8 @@ t_philo	*setup(int num, char **args);
 
 // utls.c
 void	write_error(char *msg);
+void	ft_usleep(long duration);
+long	get_time(void);
 long	ft_atol(const char *str);
 
 // main.c
