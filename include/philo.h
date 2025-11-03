@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 20:34:33 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/02 20:45:40 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 # define PHILO_H
 
 # include "libft.h"
-# include <stddef.h>
 # include <stdlib.h>
-# include <unistd.h>
 # include <stdio.h>
+# include <unistd.h>
+# include <limits.h>
+# include <pthread.h>
+# include <sys/time.h>
 
 # define MAX_INT 2147483647
 
@@ -29,11 +31,14 @@ typedef enum s_bool
 
 typedef struct s_data
 {
-	int	num_philos;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	num_meals;
+	int				num_philos;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				num_meals;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	write_lock;
+	long			start_time;
 }	t_data;
 
 typedef struct s_philo

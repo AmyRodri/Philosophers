@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 18:46:47 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 19:00:41 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/02 20:40:57 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,25 @@ void	*write_error(char *msg, void *ret)
 	putstr_fd("Error: ", 2);
 	putstr_fd(msg, 2);
 	return (ret);
+}
+
+double	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000.0 + tv.tv_usec / 1000.0));
+}
+
+void	my_usleep(double seconds)
+{
+	double	start;
+	double	end;
+
+	start = get_time();
+	end = get_time();
+	while (end - start < seconds)
+		end = get_time();
 }
 
 long	ft_atol(const char *str)
