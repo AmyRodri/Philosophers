@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 14:44:54 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/03 16:36:40 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,12 @@ t_bool	is_number(char *str);
 
 // setup.c
 t_philo	*setup(int num, char **args);
+
+// runtime.c
+void	*print_state(t_philo *philo, const char *state);
+void	eat(t_philo *philo);
+void	*routine(void *arg);
+void	*monitor(void *arg);
 
 // utls.c
 void	write_error(char *msg);
