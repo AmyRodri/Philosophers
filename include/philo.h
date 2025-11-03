@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 20:45:40 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/03 11:30:51 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "libft.h"
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
@@ -55,7 +54,7 @@ t_bool	is_number(char *str);
 t_philo	*setup(int num, char **args);
 
 // utls.c
-void	*write_error(char *msg, void *ret);
+void	write_error(char *msg);
 long	ft_atol(const char *str);
 
 // main.c

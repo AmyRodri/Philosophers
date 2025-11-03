@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 18:46:47 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 20:40:57 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/03 11:30:57 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,10 @@ static void	putstr_fd(const char *s, int fd)
 		write(fd, s++, 1);
 }
 
-void	*write_error(char *msg, void *ret)
+void	write_error(char *msg)
 {
 	putstr_fd("Error: ", 2);
 	putstr_fd(msg, 2);
-	return (ret);
 }
 
 double	get_time(void)

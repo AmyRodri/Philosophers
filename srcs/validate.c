@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 18:45:27 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 19:03:49 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/03 11:32:19 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,16 @@ t_bool	validate(int num, char **args)
 	while (--num)
 	{
 		if (!is_number(args[num]))
-			return ((t_bool)write_error("Argument is not a number\n", false));
+		{
+			write_error("Argument is not a number\n");
+			return (false);
+		}
 		i = ft_atol(args[num]);
 		if (i < 0 || i > MAX_INT)
-			return ((t_bool)write_error("Argument out of range\n", false));
+		{
+			write_error("Argument out of range\n");
+			return (false);
+		}
 	}
 	return (true);
 }

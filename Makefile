@@ -7,10 +7,9 @@ NC          = \033[0m
 
 CC          = cc
 CFLAGS      = -Wall -Wextra -Werror
-INCLUDE     = -I libft/srcs/includes -I include
+INCLUDE     = -I include
 
 RM          = rm -rf
-RUNLIB      = -C libft
 
 # Diretórios
 SRCSDIR     = srcs
@@ -28,8 +27,6 @@ SRCS := $(addprefix $(SRCSDIR)/, $(SRCS))
 # Objetos
 OBJS = $(addprefix $(OBJDIR)/, $(notdir $(SRCS:.c=.o)))
 
-# Libs
-LIBFT = libft/libft.a
 
 # ---------- Regras ----------
 all: $(NAME)
@@ -47,20 +44,13 @@ $(OBJDIR)/%.o: $(SRCSDIR)/%.c | $(OBJDIR)
 $(OBJDIR):
 	@mkdir -p $(OBJDIR)
 
-# Compilar libft silenciosamente
-$(LIBFT):
-	@$(MAKE) $(RUNLIB) -s
-	@printf "$(GREEN)✅ Libft compilada com sucesso$(NC)\n"
-
 # ---------- Limpeza ----------
 clean:
 	@$(RM) $(OBJDIR)
-	@$(MAKE) clean $(RUNLIB) -s
 	@printf "$(YELLOW)🧹 Objetos limpos$(NC)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@$(MAKE) fclean $(RUNLIB) -s
 	@printf "$(YELLOW)🗑️ Executável removido$(NC)\n"
 
 re: fclean all

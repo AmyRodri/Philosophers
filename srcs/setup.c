@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
+/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:15 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/02 20:34:00 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/03 11:31:40 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static t_data	*init_data(int num, char **args)
 
 	data = malloc(sizeof(t_data));
 	if (!data)
-		return (write_error("Memory allocation failed\n", NULL));
+	{
+		write_error("Memory allocation failed\n");
+		return (NULL);
+	}
 	data->num_philos = (int)ft_atol(args[1]);
 	data->time_to_die = (int)ft_atol(args[2]);
 	data->time_to_eat = (int)ft_atol(args[3]);
@@ -36,7 +39,10 @@ static t_philo	*init_philo(t_data *data)
 
 	philos = malloc(sizeof(t_philo) * data->num_philos);
 	if (!philos)
-		return (write_error("Memory allocation failed\n", NULL));
+	{
+		write_error("Memory allocation failed\n");
+		return (NULL);
+	}
 	i = 0;
 	while (i < data->num_philos)
 	{
@@ -51,7 +57,6 @@ t_philo	*setup(int num, char **args)
 {
 	t_philo	*philos;
 	t_data	*data;
-	int		i;
 
 	data = init_data(num, args);
 	if (!data)
