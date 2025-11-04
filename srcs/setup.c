@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:15 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 17:15:53 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/04 13:32:43 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static t_data	*init_data(int num, char **args)
 	return (data);
 }
 
-static void	init_mutexes(t_data *data)
+static t_bool	init_mutexes(t_data *data)
 {
 	int	i;
 
@@ -42,13 +42,14 @@ static void	init_mutexes(t_data *data)
 	if (!data->forks)
 	{
 		write_error("Memory allocation failed\n");
-		return ;
+		return (false);
 	}
 	i = 0;
 	while (i < data->num_philos)
 		pthread_mutex_init(&data->forks[i++], NULL);
 	pthread_mutex_init(&data->write_lock, NULL);
 	pthread_mutex_init(&data->finish_lock, NULL);
+	return (true);
 }
 
 static t_philo	*init_philo(t_data *data)
@@ -84,7 +85,8 @@ t_philo	*setup(int num, char **args)
 	data = init_data(num, args);
 	if (!data)
 		return (NULL);
-	init_mutexes(data);
+	if (!init_mutexes(data))
+		return (NULL);
 	philos = init_philo(data);
 	if (!philos)
 	{

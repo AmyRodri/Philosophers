@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 16:36:40 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/04 11:35:50 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	finish_lock;
+	pthread_t		monitor_thread;
 	long			start_time;
 }	t_data;
 
