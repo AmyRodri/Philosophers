@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:05:03 by amyrodri          #+#    #+#             */
-/*   Updated: 2025/11/04 13:27:44 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:50:17 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	*routine(void *arg)
 		pthread_mutex_unlock(&data->finish_lock);
 		eat(philo);
 		print_state(philo, "is thinking");
-		ft_usleep(100);
+		ft_usleep(200);
 		if (data->num_meals != -1 && philo->meals_eaten >= data->num_meals)
 			break ;
 		print_state(philo, "is sleeping");
@@ -124,7 +124,7 @@ void	*monitor(void *arg)
 			pthread_mutex_unlock(&data->finish_lock);
 			return (NULL);
 		}
-		usleep(500);
+		usleep(1000);
 	}
 	return (NULL);
 }

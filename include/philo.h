@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/04 11:35:50 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/05 15:39:48 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_philo
 	int			left_fork;
 	int			right_fork;
 	int			meals_eaten;
-	int			last_meal;
+	size_t		last_meal;
 	t_data		*data;
 }	t_philo;
 
