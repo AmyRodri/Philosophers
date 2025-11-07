@@ -6,7 +6,7 @@
 /*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/05 15:39:48 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/07 19:00:50 by amyrodri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,17 @@ typedef enum s_bool
 typedef struct s_data
 {
 	int				num_philos;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
+	size_t			time_to_die;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
 	int				num_meals;
 	int				finished;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	write_lock;
 	pthread_mutex_t	finish_lock;
+	pthread_mutex_t	meal_lock;
 	pthread_t		monitor_thread;
-	long			start_time;
+	size_t			start_time;
 }	t_data;
 
 typedef struct s_philo
