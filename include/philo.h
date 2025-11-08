@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/07 19:00:50 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:43:12 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 # include <sys/time.h>
 
 # define MAX_INT 2147483647
+
+# define MSG_EATING "\033[93mis eating\033[0m"
+# define MSG_FORK "\033[95mhas taken a fork\033[0m"
+# define MSG_SLEEP "\033[96mis sleeping\033[0m"
+# define MSG_THINKING "\033[92mis thinking\033[0m"
+# define MSG_DIED "\033[1;91mdied\033[0m"
 
 typedef enum s_bool
 {

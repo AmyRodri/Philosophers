@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:15 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/07 19:01:22 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/07 22:08:36 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ static t_data	*init_data(int num, char **args)
 		return (NULL);
 	}
 	data->num_philos = (int)ft_atol(args[1]);
-	data->time_to_die = (int)ft_atol(args[2]);
-	data->time_to_eat = (int)ft_atol(args[3]);
-	data->time_to_sleep = (int)ft_atol(args[4]);
+	data->time_to_die = ft_atol(args[2]);
+	data->time_to_eat = ft_atol(args[3]);
+	data->time_to_sleep = ft_atol(args[4]);
 	data->num_meals = -1;
 	data->finished = 0;
 	data->start_time = get_time();
 	if (num == 6)
-		data->num_meals = (int)ft_atol(args[5]);
+		data->num_meals = ft_atol(args[5]);
 	return (data);
 }
 
