@@ -3,25 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 18:46:47 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 14:44:31 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:42:35 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	putstr_fd(const char *s, int fd)
-{
-	while (*s)
-		write(fd, s++, 1);
-}
-
 void	write_error(char *msg)
 {
-	putstr_fd("Error: ", 2);
-	putstr_fd(msg, 2);
+	write(2, "\033[31mError: \033[0m", 17);
+	while (*msg)
+		write(2, msg++, 1);
 }
 
 long	get_time(void)
@@ -56,4 +51,15 @@ long	ft_atol(const char *str)
 	while (*str >= '0' && *str <= '9')
 		result = result * 10 + (*str++ - '0');
 	return (result * sign);
+}
+
+void	*print_state(t_philo *philo, const char *state)
+{
+	pthread_mutex_lock(&philo->data->finish_lock);
+	if (!philo->data->finished)
+		printf("\033[1;97m%-5ld \033[2;37m%-2d\033[0;97m %s\033[0m\n",
+			get_time() - philo->data->start_time,
+			philo->id, state);
+	pthread_mutex_unlock(&philo->data->finish_lock);
+	return (NULL);
 }

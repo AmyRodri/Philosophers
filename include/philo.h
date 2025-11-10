@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:30:18 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/07 22:43:12 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/10 19:13:20 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,22 +63,25 @@ typedef struct s_philo
 
 // validate.c
 t_bool	validate(int num, char **args);
-t_bool	is_number(char *str);
 
 // setup.c
 t_philo	*setup(int num, char **args);
 
 // runtime.c
-void	*print_state(t_philo *philo, const char *state);
-void	eat(t_philo *philo);
 void	*routine(void *arg);
+
+// monitor.c
 void	*monitor(void *arg);
+
+// eat.c
+void	eat(t_philo *philo);
 
 // utls.c
 void	write_error(char *msg);
-void	ft_usleep(long duration);
 long	get_time(void);
+void	ft_usleep(long duration);
 long	ft_atol(const char *str);
+void	*print_state(t_philo *philo, const char *state);
 
 // main.c
 // int	main(int num, char **args);

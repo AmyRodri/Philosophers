@@ -6,7 +6,7 @@
 /*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 20:33:15 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/07 22:08:36 by kamys            ###   ########.fr       */
+/*   Updated: 2025/11/10 19:13:49 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,6 @@ t_philo	*setup(int num, char **args)
 		return (NULL);
 	philos = init_philo(data);
 	if (!philos)
-	{
-		free(data);
 		return (NULL);
-	}
 	return (philos);
 }

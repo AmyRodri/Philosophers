@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 16:19:47 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/04 11:48:29 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/10 19:14:37 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_bool	sla(t_philo *philo, t_data *data)
+static void	cleanup(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->num_philos)
+		pthread_mutex_destroy(&data->forks[i++]);
+	pthread_mutex_destroy(&data->write_lock);
+	pthread_mutex_destroy(&data->finish_lock);
+	pthread_mutex_destroy(&data->meal_lock);
+	free(data->forks);
+	free(data);
+}
+
+static t_bool	start_simulation(t_philo *philo, t_data *data)
 {
 	int			i;
 
@@ -31,19 +45,6 @@ t_bool	sla(t_philo *philo, t_data *data)
 	return (true);
 }
 
-void	cleanup(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->num_philos)
-		pthread_mutex_destroy(&data->forks[i++]);
-	pthread_mutex_destroy(&data->write_lock);
-	pthread_mutex_destroy(&data->finish_lock);
-	free(data->forks);
-	free(data);
-}
-
 int	main(int num, char **args)
 {
 	t_philo	*philo;
@@ -53,9 +54,10 @@ int	main(int num, char **args)
 	philo = setup(num, args);
 	if (!philo)
 		return (1);
-	if (sla(philo, philo[0].data))
+	if (start_simulation(philo, philo[0].data))
 	{
 		cleanup(philo[0].data);
+		free(philo);
 		return (1);
 	}
 	cleanup(philo[0].data);

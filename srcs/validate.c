@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amyrodri <amyrodri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kamys <kamys@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 18:45:27 by kamys             #+#    #+#             */
-/*   Updated: 2025/11/03 11:32:19 by amyrodri         ###   ########.fr       */
+/*   Updated: 2025/11/10 18:40:17 by kamys            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_bool	is_number(char *str)
+static t_bool	is_number(char *str)
 {
 	while (*str)
 	{
@@ -23,11 +23,27 @@ t_bool	is_number(char *str)
 	return (true);
 }
 
+static t_bool	number_arguments(int num)
+{
+	if (num < 5 || num > 6)
+	{
+		write_error(
+			"usage ->\033[34m ./philo "
+			"number_of_philosophers "
+			"time_to_die time_to_eat "
+			"time_to_sleep "
+			"[number_of_times_each_philosopher_must_eat]\033[0m\n"
+			);
+		return (false);
+	}
+	return (true);
+}
+
 t_bool	validate(int num, char **args)
 {
 	long	i;
 
-	if (num < 5 || num > 6)
+	if (!number_arguments(num))
 		return (false);
 	while (--num)
 	{

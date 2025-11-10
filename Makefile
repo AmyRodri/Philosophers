@@ -20,6 +20,8 @@ SRCS 		= main.c		\
 			  validate.c	\
 			  setup.c		\
 			  runtime.c		\
+			  monitor.c		\
+			  eat.c			\
 			  utils.c
 
 # Adiciona prefixo do diretório
